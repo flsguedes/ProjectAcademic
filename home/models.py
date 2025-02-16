@@ -62,7 +62,7 @@ class Aluno(models.Model):
         verbose_name="alunos"
 
     def __str__(self):
-        return self.user
+        return self.user.first_name
     
 
 class Instituicao(models.Model):
@@ -90,7 +90,7 @@ class Professor(models.Model):
         verbose_name="professores"
 
     def __str__(self):
-        return self.user
+        return self.user.first_name
 
 
 class Habilitacao(models.Model):
@@ -104,11 +104,11 @@ class Habilitacao(models.Model):
         verbose_name="habilitacao"
 
     def __str__(self):
-        return self.professor
+        return self.professor.user.first_name
     
 
 class Disciplina(models.Model):
-    nome= models.CharField(max_length=14, verbose_name="Disciplina")
+    nome= models.CharField(max_length=30, verbose_name="Disciplina")
     created_at= models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
     updated_at= models.DateTimeField(auto_now=True, verbose_name="Atualizado em")
 
@@ -124,8 +124,8 @@ class Historico(models.Model):
     professor= models.ForeignKey(Professor, models.CASCADE, related_name="professores_historico", blank=False, null=False)
     disciplina= models.ForeignKey(Disciplina, models.CASCADE, related_name="disciplina_historico", blank=False, null=False)
     turma= models.ForeignKey(Turma, models.CASCADE, related_name="turma_historico", blank=False, null=False)
-    semestre= models.IntegerField(verbose_name="Semestre")
-    horario= models.DateTimeField(verbose_name="Horário")
+    semestre= models.FloatField(verbose_name="Semestre")
+    horario= models.CharField(max_length=30, verbose_name="Horário")
     carga_horaria= models.IntegerField(verbose_name="Carga horario", blank=True, null=True)
     quantidade_aluno= models.IntegerField(verbose_name="Quantidade de alunos")
     created_at= models.DateTimeField(auto_now_add=True, verbose_name="Criado em")
@@ -135,6 +135,4 @@ class Historico(models.Model):
         db_table="historico"
         verbose_name="historico"
 
-    def __str__(self):
-        return self.semestre
 # Create your models here.

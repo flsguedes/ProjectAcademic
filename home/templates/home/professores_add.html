@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <div class="add-forms">
+        <form method="POST" action={% url "professor_add" %}>
+            {% csrf_token %}
+            <select class="form-control" name="instituicao" id="simple-select1" required>
+                <option value=""></option>  
+                {% for instituicao in instituicao %}
+                <option value="{{ instituicao.id }}">
+                    {{ instituicao.nome }}
+                </option>
+                {% endfor %}     
+            </select>
+            <select class="form-control" name="user" id="simple-select1" required>
+                <option value=""></option>  
+                {% for user in user %}
+                <option value="{{ user.id }}">
+                    {{ user.username }}
+                </option>
+                {% endfor %}     
+            </select>
+            <label for="especializacao">Especialização</label>
+            <input id="especializacao" name="especializacao" type="text" placeholder="Doutorado">
+            <button>Salvar</button>
+        </form>
+    </div>
+{% endblock %}

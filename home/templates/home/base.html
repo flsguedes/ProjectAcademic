@@ -6,13 +6,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'assets/favicon/favicon.svg' %}">
     <title>Login Acadêmico</title>
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
 </head>
 <body>
     <nav class="navbar">
-        teste
+        <ul>
+            <li><img src={% static 'assets/img/logo_ifce.png' %}></li>
+            <li><a href="{% url 'consulta_disciplina' %}"><span class="material-icons">search</span>Consultar Disciplinas</a></li>
+            <li><a href="{% url 'consulta_professores' %}"><span class="material-icons">person_search</span>Consultar Professores</a></li>
+            <li><a href="{% url 'professores' %}"><span class="material-icons">person_add</span>Professores</a></li>
+            <li><a href="{% url 'disciplinas' %}"><span class="material-icons">menu_book</span>Disciplinas</a></li>
+            <li><a href="{% url 'turmas' %}"><span class="material-icons">book</span>Turmas</a></li>
+            <li><a href="{% url 'alunos' %}"><span class="material-icons">groups</span>Alunos</a></li>
+        </ul>
     </nav>
-    {% block content %} {% endblock content %}
+    <div class="navbar-logout">
+        <h2>Bem vindo {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</h2>
+        <a href="{% url 'logout' %}" >Sair</a>
+    </div>
+    <main class="container">
+        {% block content %} {% endblock content %}
+    <main>
+    
+    
+    <script src="{% static 'js/app.js' %}"/>
+    <script>
+        new DataTable('#example', {
+            columnDefs: [
+                {
+                    targets: [0],
+                    orderData: [0, 1]
+                },
+                {
+                    targets: [1],
+                    orderData: [1, 0]
+                },
+                {
+                    targets: [4],
+                    orderData: [4, 0]
+                }
+            ]
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var table = $("#dataTable-4").DataTable({
+                autoWidth: true,
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "Todos"],
+                ],
+                language: {
+                    info: "Mostrando _PAGE_ de _PAGES_ registros",
+                    infoEmpty: "No records available",
+                    lengthMenu: "Exibir _MENU_ resultados por página",
+                    zeroRecords: "Nothing found - sorry",
+                    emptyTable: "Nenhum registro encontrado",
+                    infoFiltered: "(Filtrados de _MAX_ registros)",
+                    infoThousands: ".",
+                    loadingRecords: "Carregando...",
+                    zeroRecords: "Nenhum registro encontrado",
+                    search: "Pesquisar",
+                    paginate: {
+                        next: "Próximo",
+                        previous: "Anterior",
+                        first: "Primeiro",
+                        last: "Último",
+                    },
+                },
+                columnDefs: [
+                    { orderable: true, targets: 0 }
+                ],
+                order: [[0, 'asc']],
+            });
+        
+            // $('#filter-id').on('keyup', function () {
+            //     table.column(0).search(this.value).draw();
+            // });
+            // $('#filter-nome').on('keyup', function () {
+            //     table.column(1).search(this.value).draw();
+            // });
+            // $('#filter-observacao').on('keyup', function () {
+            //     table.column(2).search(this.value).draw();
+            // });
+            // $('#filter-status').on('change', function () {
+            //     var selectedValue = this.value;
+            //     table.column(3).search(selectedValue).draw();
+            // });
+            // $('#filter-priorizacao').on('keyup', function () {
+            //     var selectedValue = this.value;
+            //     table.column(5).search(selectedValue).draw();
+            // });
+            // $('#filter-status').on('change', function () {
+            //     var selectedValue = this.value;
+            //     table.column(3).search(selectedValue).draw();
+            // });
+            // $('#filter-equipe').on('change', function () {
+            //     var selectedValue = this.value;
+            //     table.column(6).search(selectedValue).draw();
+            // });
+            // $("#Frontend").on("click", function () {
+            //     var searchString = "Frontend";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Rails").on("click", function () {
+            //     var searchString = "Rails";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Dotnet").on("click", function () {
+            //     let searchString = "Dotnet";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Rh-folha").on("click", function () {
+            //     var searchString = "Rh-folha";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Java").on("click", function () {
+            //     var searchString = "Java";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Python").on("click", function () {
+            //     var searchString = "Python";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $("#Php").on("click", function () {
+            //     var searchString = "Php";
+            //     table.search(searchString).draw();
+            //     window.scrollTo({
+            //         top: document.body.scrollHeight,
+            //         behavior: "smooth",
+            //     });
+            // });
+            // $('#filter-data-inicial, #filter-data-final').on('change', function () {
+            //     console.log('Evento de mudança acionado');
+        
+            //     var dataInicial = $('#filter-data-inicial').val();
+            //     var dataFinal = $('#filter-data-final').val();
+        
+            //     console.log('Data Inicial:', dataInicial);
+            //     console.log('Data Final:', dataFinal);
+        
+            //     if (dataInicial && !moment(dataInicial, 'YYYY-MM-DD', true).isValid()) {
+            //         alert('Data inicial inválida');
+            //         return;
+            //     }
+            //     if (dataFinal && !moment(dataFinal, 'YYYY-MM-DD', true).isValid()) {
+            //         alert('Data final inválida');
+            //         return;
+            //     }
+        
+                // $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+                //     var dataSolicitacao = data[4];
+                //     var dataLimpa = dataSolicitacao.replace(/calendar_today\s+/, '').trim();
+        
+                //     console.log("Data da Tabela (limpa):", dataLimpa);
+                //     var meses = {
+                //         "Janeiro": "01",
+                //         "Fevereiro": "02",
+                //         "Março": "03",
+                //         "Abril": "04",
+                //         "Maio": "05",
+                //         "Junho": "06",
+                //         "Julho": "07",
+                //         "Agosto": "08",
+                //         "Setembro": "09",
+                //         "Outubro": "10",
+                //         "Novembro": "11",
+                //         "Dezembro": "12"
+                //     };
+                //     var partesData = dataLimpa.split(' de ');
+                //     if (partesData.length === 3) {
+                //         var dia = partesData[0].trim();
+                //         var mes = meses[partesData[1].trim()];
+                //         var ano = partesData[2].trim();
+        
+                //         if (mes) {
+                //             var dataTabelaFormatada = `${ano}-${mes}-${dia.padStart(2, '0')}`;
+        
+                //             console.log("Data Formatada:", dataTabelaFormatada);
+        
+                //             if (dataInicial && dataFinal) {
+                //                 return dataTabelaFormatada >= dataInicial && dataTabelaFormatada <= dataFinal;
+                //             } else if (dataInicial) {
+                //                 return dataTabelaFormatada >= dataInicial;
+                //             } else if (dataFinal) {
+                //                 return dataTabelaFormatada <= dataFinal;
+                //             }
+                //         } else {
+                //             console.log("Mês não encontrado no mapeamento.");
+                //         }
+                //     } else {
+                //         console.log("Formato de data inválido.");
+                //     }
+        
+                //     return true;
+                // });
+        
+                table.draw();
+                $.fn.dataTable.ext.search.pop();
+            });
+        
+    </script>
 </body>
 </html>

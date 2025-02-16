@@ -1,0 +1,35 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <h2>Tela de Consulta de Disciplina</h2>
+    <div class="card-body">
+        <!-- table -->
+        <table class="table datatables tabelas-row " style="width:100%" id="dataTable-4">
+            <thead >
+                <tr >
+                    <th class="col-0" style="color: #000">ID</th>
+                    <th class="col-2" style="color: #000">Disciplinas</th>
+                    <th class="col-4" style="color: #000">Professores</th>
+                    <th class="col-2" style="color: #000">Especialização</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for habilitacao in habilitacao %}
+                <tr>
+                    <td>
+                    <a class="link-table" href="" id="infoTabela">{{ habilitacao.id }}</a>
+                    </td>
+                    <td style="text-align:left; padding-left:1rem">
+                    <a class="link-table" href="" id="infoTabela">{{ habilitacao.disciplina }}</a>
+                    </td>
+                    <td style="text-align:left; padding-left:1rem">
+                    <a class="link-table" href="" id="infoTabela">{{ habilitacao.professor.user.first_name }}</a>
+                    </td>
+                    <td style="text-align:left; padding-left:1rem">
+                    <a class="link-table" href="" id="infoTabela">{{ habilitacao.professor.especializacao }}</a>
+                    </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table> 
+      </div>
+{% endblock %}

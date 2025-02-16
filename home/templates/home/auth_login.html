@@ -11,12 +11,13 @@
     
 </head>
 <body>
+    <img class="plano_fundo" src={% static 'assets/img/img_fundo.jpg' %}>
     <form class="login-container" action="{% url 'auth_login' %}" method="POST">
         {% csrf_token %}
         <h2>Login Acadêmico</h2>
         <input type="text" placeholder="Usuário" name="username" required>
         <input type="password" placeholder="Senha" name="password" required>
         <button>Entrar</button>
-    </form>
+    </form> 
 </body>
 </html>
