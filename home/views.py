@@ -115,13 +115,51 @@ def ProfessoresAlter(request, id):
 
     return render (request, "./home/professores_alter.html", { "professor" : professor_id, "instituicao": instituicao, "user": user})
 
-    
 
-def Disciplinas(request):
-    return render(request, "./home/disciplinas.html")
+def Disciplinas(request, id=None):
+    if request.method == "GET":
+        disciplina = Disciplina.objects.all()
+        
+    elif request.method == "POST":
+        disciplina = Disciplina.objects.get(id=id)
+        disciplina.delete()
+        referer = request.META.get('HTTP_REFERER', '/default-url/')
+        return redirect(referer)
+    return render(request, "./home/disciplinas.html", { "disciplina" : disciplina })
+
+def DisciplinasAdd(request):
+    if request.method == "GET":
+        disciplina = Disciplina.objects.all()
+    elif request.method == "POST":
+        nome = request.POST.get("nome")
+
+        Disciplina.objects.create(
+            nome=nome
+        )
+        
+        return redirect(Disciplinas)
+
+    return render (request, "./home/disciplinas_add.html", { "disciplina" : disciplina,})
+
+def DisciplinasAlter(request, id):
+    if request.method == "GET":
+        disciplina = Disciplina.objects.get(id=id)
+
+    elif request.method == "POST":
+        disciplina = Disciplina.objects.get(id=id)
+
+        nome = request.POST.get("nome")
+
+        disciplina.nome = nome
+
+        disciplina.save()
+        return redirect(Disciplinas)
+
+    return render (request, "./home/disciplinas_alter.html", { "disciplina" : disciplina,})
 
 def Turmas(request):
     return render(request, "./home/turmas.html")
 
 def Alunos(request):
     return render(request, "./home/alunos.html")
+

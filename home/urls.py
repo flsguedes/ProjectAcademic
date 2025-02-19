@@ -19,6 +19,12 @@ urlpatterns = [
 
 
     path("disciplinas/", Disciplinas, name="disciplinas"),
+    path("disciplinas/<int:id>", Disciplinas, name="disciplinas_id"),
+    path("disciplinas/add/", DisciplinasAdd, name="disciplinas_add"),
+    path("disciplinas/<int:id>/alter", DisciplinasAlter, name="disciplinas_alter"),
+
+
+
     path("turmas/", Turmas, name="turmas"),
     path("alunos/", Alunos, name="alunos"),
 ]

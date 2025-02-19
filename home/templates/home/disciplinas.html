@@ -2,7 +2,7 @@
 {% block content %}
 <div class="card-body-main">
   <h2 class="description-titulo">Disciplinas</h2>
-  <a href='./salva_funcao'>Criar</a>
+  <a href='{% url 'disciplinas_add' %}'>Criar</a>
 </div>
     <div class="card-body">
         <!-- table -->
@@ -11,34 +11,29 @@
                 <tr >
                     <th class="col-0" style="color: #000">ID</th>
                     <th class="col-2" style="color: #000">Disciplinas</th>
-                    <th class="col-4" style="color: #000">Professores</th>
-                    <th class="col-2" style="color: #000">Especialização</th>
                     <th class="col-2" style="color: #000"></th>
                 </tr>
             </thead>
             <tbody>
-              {% for professor in professor %}
+              {% for disciplina in disciplina %}
               <tr>
                 <td>
-                  <a class="link-table" href="" id="infoTabela">{{ professor.id }}</a>
+                  <a class="link-table" href="" id="infoTabela">{{ disciplina.id }}</a>
                 </td>
                 <td style="text-align:left; padding-left:1rem">
-                  <a class="link-table" href="" id="infoTabela">{{ professor.disciplinas }}</a>
-                </td>
-                <td style="text-align:left; padding-left:1rem">
-                  <a class="link-table" href="" id="infoTabela">{{ professor.user.first_name }}</a>
-                </td>
-                <td style="text-align:left; padding-left:1rem">
-                  <a class="link-table" href="" id="infoTabela">{{ professor.especializacao }}</a>
+                  <a class="link-table" href="" id="infoTabela">{{ disciplina.nome }}</a>
                 </td>
                 <td>
                   <div class="icons-action">
-                    <a class="link-action" href="">
+                    <a class="link-action" href="{% url "disciplinas_alter" disciplina.id %}">
                       <span class="material-icons icons-action-size" >edit</span>
                     </a>
-                    <a class="link-action" href="">
-                      <span class="material-icons icons-action-size" >delete</span>
-                    </a>
+                    <form method="POST" action="{% url "disciplinas_id" disciplina.id %}">
+                      {% csrf_token %}
+                      <button type='submit' class="link-action">
+                        <span class="material-icons icons-action-size" >delete</span>
+                      </button>
+                    </form>
                   </div>
                 </td>
               </tr>
