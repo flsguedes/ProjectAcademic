@@ -105,10 +105,10 @@ body {
 .navbar{
     width: 17rem;
     margin: 0 calc(100% - 17rem) 0 0;
-    height: 100%;
+    padding-top: 0;
+    height: 200%;
     background: var(--color-secondary);
     color: var(--white);
-    padding: 3rem 2rem 2rem 2rem;
     font-family: var(--font-family);
     font-size: 1rem;
     position: absolute;
@@ -258,25 +258,3 @@ body {
         color: #015958;
     }
 }
-
-
-/*   Botão
-a{
-        width: 4rem;
-        height: 1.7rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        border:none;
-        border-radius: 1rem;
-        color: var(--white);
-        background-color: var(--color-quaternary);
-        transition: 0.3s ease-in-out;
-        cursor: pointer;
-    }
-
-    a:hover{
-        background-color: var(--color-secondary);
-    }
-*/

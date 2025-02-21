@@ -3,9 +3,9 @@
     <div class="add-forms">
         <form method="POST" action={% url "disciplinas_add" %}>
             {% csrf_token %}
-            <label for="nome">nome</label>
-            <input id="nome" name="nome" type="text" placeholder="Nome da Disciplina">
-            <button>Salvar</button>
+            <label class="form-label" for="nome">nome</label>
+            <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome da Disciplina">
+            <button class="btn btn-primary mt-3">Salvar</button>
         </form>
     </div>
 {% endblock %}
